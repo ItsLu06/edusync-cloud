@@ -1,0 +1,256 @@
+/* ============================================
+   EduSync — Modo Oscuro + Neon
+   ============================================ */
+
+:root {
+    --bg-color: #0d0d0d;
+    --text-color: #e0e0e0;
+    --card-bg: rgba(255,255,255,0.05);
+    --border-color: rgba(255,255,255,0.1);
+    --accent-color: #f5a623;
+    --glow-color: rgba(245,166,35,0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    background: rgba(255,255,255,0.03) !important;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid var(--border-color) !important;
+    padding: 1.5rem 1rem;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color) !important;
+    text-shadow: 0 0 20px var(--glow-color);
+    margin-bottom: 2rem;
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar a {
+    color: #b0b0b0 !important;
+    text-decoration: none;
+    padding: 0.7rem 1rem;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s;
+    margin-bottom: 0.3rem;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.05) !important;
+    color: var(--accent-color) !important;
+}
+
+.sidebar a.active {
+    background: var(--accent-color) !important;
+    color: #0d0d0d !important;
+    font-weight: 600;
+    box-shadow: 0 0 25px var(--glow-color);
+}
+
+.sidebar .logout-btn {
+    background: transparent !important;
+    border: 1px solid var(--border-color) !important;
+    color: #b0b0b0 !important;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    width: 100%;
+    text-align: left;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.sidebar .logout-btn:hover {
+    background: rgba(255,0,0,0.1) !important;
+    border-color: #ff4444 !important;
+    color: #ff4444 !important;
+}
+
+/* Main content */
+.main-content {
+    padding: 2rem;
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(5px);
+    color: var(--text-color) !important;
+}
+
+.card:hover {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 30px var(--glow-color) !important;
+    transform: translateY(-2px);
+}
+
+.list-group-item {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    color: var(--text-color) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--accent-color) !important;
+    border: none !important;
+    color: #0d0d0d !important;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 30px var(--glow-color) !important;
+    transform: scale(1.02);
+}
+
+.btn-secondary, .btn-outline-secondary {
+    background: transparent !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    color: var(--text-color) !important;
+}
+
+.btn-secondary:hover, .btn-outline-secondary:hover {
+    background: rgba(255,255,255,0.05) !important;
+    border-color: var(--accent-color) !important;
+    color: var(--accent-color) !important;
+}
+
+/* Progress bar */
+.progress {
+    background: rgba(255,255,255,0.05) !important;
+    border-radius: 999px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: var(--accent-color) !important;
+    box-shadow: 0 0 20px var(--glow-color) !important;
+    border-radius: 999px;
+}
+
+/* Badges */
+.badge {
+    background: var(--accent-color) !important;
+    color: #0d0d0d !important;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+}
+
+/* Inputs */
+.form-control, .form-select {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    transition: all 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 20px var(--glow-color) !important;
+    background: rgba(255,255,255,0.08) !important;
+    color: var(--text-color) !important;
+}
+
+.form-control::placeholder {
+    color: #666;
+}
+
+/* Color picker */
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+    margin: 0 3px;
+}
+
+.color-option:hover {
+    transform: scale(1.15);
+}
+
+.color-option.active {
+    border-color: white !important;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 999px;
+}
+
+/* Glow text */
+.glow-text {
+    color: var(--accent-color) !important;
+    text-shadow: 0 0 30px var(--glow-color) !important;
+}
+
+/* Config panel */
+.config-panel {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 14px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5 {
+    color: var(--text-color) !important;
+}
+
+/* Footer */
+footer, .footer, .site-footer {
+    background: rgba(255,255,255,0.02) !important;
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
+    color: #666 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .main-content {
+        padding: 1rem;
+    }
+}
