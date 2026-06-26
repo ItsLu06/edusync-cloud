@@ -10,10 +10,7 @@ class TareaController extends Controller
 {
     public function index($progresoId)
     {
-        $semana = Progreso::where('id', $progresoId)
-                          ->where('user_id', auth()->id())
-                          ->firstOrFail();
-
+        $semana = Progreso::findOrFail($progresoId);
         $tareas = Tarea::where('progreso_id', $progresoId)->get();
 
         return view('tareas.tareas', compact('semana', 'tareas'));
@@ -21,6 +18,10 @@ class TareaController extends Controller
 
     public function create($progresoId)
     {
+        if (auth()->user()->rol !== 'docente') {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         $semana = Progreso::where('id', $progresoId)
                           ->where('user_id', auth()->id())
                           ->firstOrFail();
@@ -30,6 +31,10 @@ class TareaController extends Controller
 
     public function store(Request $request, $progresoId)
     {
+        if (auth()->user()->rol !== 'docente') {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         $request->validate([
             'titulo' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
@@ -57,6 +62,10 @@ class TareaController extends Controller
 
     public function edit($id)
     {
+        if (auth()->user()->rol !== 'docente') {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         $tarea = Tarea::where('id', $id)
                       ->whereHas('progreso', function ($query) {
                           $query->where('user_id', auth()->id());
@@ -68,6 +77,10 @@ class TareaController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->rol !== 'docente') {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         $tarea = Tarea::where('id', $id)
                       ->whereHas('progreso', function ($query) {
                           $query->where('user_id', auth()->id());
@@ -94,6 +107,10 @@ class TareaController extends Controller
 
     public function destroy($id)
     {
+        if (auth()->user()->rol !== 'docente') {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         $tarea = Tarea::where('id', $id)
                       ->whereHas('progreso', function ($query) {
                           $query->where('user_id', auth()->id());
@@ -108,12 +125,7 @@ class TareaController extends Controller
 
     public function toggle($id)
     {
-        $tarea = Tarea::where('id', $id)
-                      ->whereHas('progreso', function ($query) {
-                          $query->where('user_id', auth()->id());
-                      })
-                      ->firstOrFail();
-
+        $tarea = Tarea::findOrFail($id);
         $tarea->completado = !$tarea->completado;
         $tarea->save();
 

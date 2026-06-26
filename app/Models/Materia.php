@@ -11,15 +11,25 @@ class Materia extends Model
         'descripcion',
         'color',
         'tag',
+        'user_id',
+        'codigo_invitacion',
     ];
 
-    // Relación con progreso
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function usuarios()
+    {
+        return $this->belongsToMany(User::class, 'materia_usuario');
+    }
+
     public function progreso()
     {
         return $this->hasMany(Progreso::class);
     }
 
-    // Relación con certificados
     public function certificados()
     {
         return $this->hasMany(Certificado::class);

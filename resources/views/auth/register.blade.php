@@ -44,6 +44,19 @@
             background: rgba(255,255,255,0.08);
             color: #e0e0e0;
         }
+        .form-select {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #e0e0e0;
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .form-select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--glow-color);
+            background: rgba(255,255,255,0.08);
+            color: #e0e0e0;
+        }
         .btn-primary {
             background: var(--accent-color);
             color: #0d0d0d;
@@ -85,6 +98,17 @@
                 <label for="email">Correo electrónico</label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
                 @error('email')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="rol">Tipo de usuario</label>
+                <select id="rol" name="rol" class="form-select" required>
+                    <option value="estudiante">Estudiante</option>
+                    <option value="docente">Docente</option>
+                </select>
+                @error('rol')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>

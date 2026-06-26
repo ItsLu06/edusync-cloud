@@ -122,10 +122,10 @@ class ProgresoController extends Controller
     {
         $materia = Materia::findOrFail($materiaId);
 
-        $semanas = Progreso::where('user_id', auth()->id())
-                           ->where('materia_id', $materiaId)
-                           ->orderBy('semana')
-                           ->get();
+        // Obtener semanas de la materia, sin importar el usuario
+        $semanas = Progreso::where('materia_id', $materiaId)
+                        ->orderBy('semana')
+                        ->get();
 
         return view('tareas.index', compact('materia', 'semanas'));
     }

@@ -9,6 +9,10 @@ class SemanaController extends Controller
 {
     public function store(Request $request)
     {
+        if (auth()->user()->rol !== 'docente') {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         $request->validate([
             'materia_id' => 'required|exists:materias,id',
             'nombre' => 'required|string|max:255',
@@ -35,6 +39,10 @@ class SemanaController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->rol !== 'docente') {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         $request->validate([
             'nombre' => 'required|string|max:255',
         ]);
@@ -51,10 +59,7 @@ class SemanaController extends Controller
 
     public function destroy($id)
     {
-        $semana = Progreso::where('id', $id)
-                          ->where('user_id', auth()->id())
-                          ->firstOrFail();
-
+        $semana = Progreso::findOrFail($id);
         $semana->delete();
 
         return redirect()->back()->with('success', 'Semana eliminada');
